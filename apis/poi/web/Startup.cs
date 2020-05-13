@@ -38,7 +38,7 @@ namespace poi
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("docs", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Points Of Interest(POI) API", Version = "v1" });
+                c.SwaggerDoc("docs", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Points Of Interest(POI) superAPI", Version = "v1" });
             });
         }
 
