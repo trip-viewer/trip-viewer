@@ -15,7 +15,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      working-directory: ./apis/trips
+      working-directory: apis/trips
 
     steps:
       - name: Checkout code
