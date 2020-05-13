@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths: 
-    - '/apis/trips/**'
+      - '/apis/trips/**'
 
 jobs:
   build:
