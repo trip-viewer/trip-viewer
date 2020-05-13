@@ -4,7 +4,7 @@ name: GO CI
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ stevecaravajal-patch-1 ]
     paths:
     - 'apis/trips/**'
 
