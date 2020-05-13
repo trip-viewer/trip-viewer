@@ -1,11 +1,11 @@
 # POI API OWNERSHIP
-/apis/poi           @trip-viewer/poi-api-owners
+/apis/poi/           @trip-viewer/poi-api-owners
 
 # TRIPS API OWNERSHIP
-/apis/trips         @trip-viewer/trips-api-owners
+/apis/trips/         @trip-viewer/trips-api-owners
 
 # USER-JAVA API OWNERSHIP
-/apis/user-java     @trip-viewer/user-java-api-owners
+/apis/user-java/     @trip-viewer/user-java-api-owners
 
 # USER-PROFILE API OWNERSHIP
-/apis/userprofile   @trip-viewer/userprofile-api-owners
+/apis/userprofile/   @trip-viewer/userprofile-api-owners
