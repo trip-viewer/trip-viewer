@@ -46,7 +46,7 @@ jobs:
         # Applies to Web App only: Publish profile (*.publishsettings) file contents with Web Deploy secrets
         slot-name: staging # optional, default is production
         # Applies to Web App only: Path to package or folder. *.zip, *.war, *.jar or a folder to deploy
-        images: openhackf1c9cxe9acr.azurecr.io/api-user-java:${{ github.run_number }}
+        images: openhackf1c9cxe9acr.azurecr.io/devopsoh/api-user-java:${{ github.run_number }}
         
    
     - name: Azure logout
