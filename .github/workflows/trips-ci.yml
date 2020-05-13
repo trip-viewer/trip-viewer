@@ -1,6 +1,6 @@
 # basic Go workflow
 
-name: GO CI
+name: Trips CI
 
 on:
   pull_request:
