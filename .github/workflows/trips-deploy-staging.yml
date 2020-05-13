@@ -1,0 +1,31 @@
+name: trips-deploy-staging
+
+on:
+  push:
+    branches:
+      - master
+    paths: 
+    - '/apis/trips/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker Login
+      uses: Azure/docker-login@v1
+      with:
+        # Container registry username
+        username: openhackf1c9cxe9acr
+        # Container registry password
+        password: ${{ secrets.ACR_KEY }}
+        # Container registry server url
+        login-server: openhackf1c9cxe9acr.azurecr.io
+    - name: Build Docker Container
+      run: |
+        docker build apis/trips/Dockerfile -t openhackf1c9cxe9acr.azurecr.io/devopsoh/api-trips:${{ github.run_number }}
+    - name: Push to ACR
+      run: |
+        docker push openhackf1c9cxe9acr.azurecr.io/api-trips:${{ github.run_number }}
