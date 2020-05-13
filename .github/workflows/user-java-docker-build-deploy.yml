@@ -32,7 +32,7 @@ jobs:
         docker build apis/user-java/ -t openhackf1c9cxe9acr.azurecr.io/devopsoh/api-user-java:${{ github.run_number }}
     - name: Push to ACR
       run: |
-        docker push openhackf1c9cxe9acr.azurecr.io/api-user-java:${{ github.run_number }}
+        docker push openhackf1c9cxe9acr.azurecr.io/devopsoh/api-user-java:${{ github.run_number }}
     - name: 'Login via Azure CLI'
       uses: azure/login@v1
       with:
