@@ -45,7 +45,7 @@ jobs:
       uses: Azure/webapps-deploy@v2
       with:
         app-name: openhackf1c9cxe9poi
-        slot-name: openhackf1c9cxe9poi-staging
+        slot-name: staging
         images: openhackf1c9cxe9acr.azurecr.io/devopsoh/api-poi:${{ github.run_number }}
     - name: Azure Logout
       run: az logout
