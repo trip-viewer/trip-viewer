@@ -1,0 +1,62 @@
+# This is a basic workflow to help you get started with Actions
+
+name: user-java-deploy-staging
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches:
+      - master
+    paths: 
+      - 'apis/user-java/**'
+  
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker Login
+      uses: Azure/docker-login@v1
+      with:
+        # Container registry username
+        username: openhackf1c9cxe9acr
+        # Container registry password
+        password: ${{ secrets.ACR_KEY }}
+        # Container registry server url
+        login-server: openhackf1c9cxe9acr.azurecr.io
+    - name: Build Docker Container
+      run: |
+        docker build apis/user-java/ -t openhackf1c9cxe9acr.azurecr.io/devopsoh/api-user-java:${{ github.run_number }}
+    - name: Push to ACR
+      run: |
+        docker push openhackf1c9cxe9acr.azurecr.io/api-user-java:${{ github.run_number }}
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - name: Azure WebApp
+      uses: Azure/webapps-deploy@v2
+      with:
+        # Name of the Azure Web App
+        app-name: openhackf1c9cxe9userjava
+        # Applies to Web App only: Publish profile (*.publishsettings) file contents with Web Deploy secrets
+        publish-profile: . # optional
+        # Enter an existing Slot other than the Production slot
+        slot-name: openhackf1c9cxe9userjava-staging # optional, default is production
+        # Applies to Web App only: Path to package or folder. *.zip, *.war, *.jar or a folder to deploy
+        package: .
+        # Applies to Web App Containers only: Specify the fully qualified container image(s) name. For example, 'myregistry.azurecr.io/nginx:latest' or 'python:3.7.2-alpine/'. For multi-container scenario multiple container image names can be provided (multi-line separated)
+        images: openhackf1c9cxe9acr.azurecr.io/api-user-java:${{ github.run_number }}
+        # Applies to Web App Containers only: Path of the Docker-Compose file. Should be a fully qualified path or relative to the default working directory. Required for multi-container scenario
+        configuration-file: . # optional
+        # Enter the start up command. For ex. dotnet run or dotnet run
+        startup-command: . # optional
+   
+    - name: Azure logout
+      run: |
+        az logout    
+    
