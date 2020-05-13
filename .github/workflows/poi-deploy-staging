@@ -2,7 +2,8 @@ name: poi-deploy-staging
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
     paths: 
     - '/apis/poi/**'
 
