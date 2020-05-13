@@ -37,3 +37,15 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Push to ACR
       run: docker push openhackf1c9cxe9acr.azurecr.io/devopsoh/api-poi:${{ github.run_number }}
+    - name: Azure Login
+      uses: Azure/login@v1.1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Deploy to Azure Web App staging slot
+      uses: Azure/webapps-deploy@v2
+      with:
+        app-name: openhackf1c9cxe9poi
+        slot-name: openhackf1c9cxe9poi-staging
+        images: openhackf1c9cxe9acr.azurecr.io/devopsoh/api-poi:${{ github.run_number }}
+    - name: Azure Logout
+      run: az logout
