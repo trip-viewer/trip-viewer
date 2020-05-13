@@ -68,7 +68,7 @@ public class UserApiControllerTest {
                         .accept(MediaType.APPLICATION_JSON)
                         .content(convertObjectToJsonBytes(profile))
         )
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
         verify(userRepositoryService, times(1)).save(profile);
     }
