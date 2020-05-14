@@ -47,6 +47,14 @@ jobs:
         app-name: openhackf1c9cxe9poi
         slot-name: staging
         images: openhackf1c9cxe9acr.azurecr.io/devopsoh/api-poi:${{ github.run_number }}
+    - name: Get versions in prod / staging
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          $staging=`az webapp config container show -n openhackf1c9cxe9poi --slot staging -g openhackf1c9cxe9rg | grep openhackf1c9cxe9acr.azurecr.io/devopsoh/api-poi | awk '{print $2}'`
+          $prod=`az webapp config container show -n openhackf1c9cxe9poi -g openhackf1c9cxe9rg | grep openhackf1c9cxe9acr.azurecr.io/devopsoh/api-poi | awk '{print $2}'`
+          echo ::set-env name=staging-version::$staging
+          echo ::set-env name=prod-version::$prod
     - name: Create Issue
       uses: actions/github-script@0.9.0
       with:
@@ -56,7 +64,7 @@ jobs:
             repo: context.repo.repo,
             title: 'Approve POI Deploy to Production',
             assignees: [ '${{ github.actor }}' ],
-            body: "Please perform the following:<br><br>* navigate to [the API's swagger endpoint](https://openhackf1c9cxe9poi-staging.azurewebsites.net/api/docs/poi/index.html)<br>* if everything looks good, comment `/approve` to deploy to production"
+            body: "Please perform the following:<br><br>* navigate to [the API's swagger endpoint](https://openhackf1c9cxe9poi-staging.azurewebsites.net/api/docs/poi/index.html)<br>* if everything looks good, comment `/approve` to deploy to production<br><br>Current version in prod: ${{ env.prod-version }}<br><br>Version in staging: ${{ env.staging-version }}"
             })  
     - name: Azure Logout
       run: az logout
