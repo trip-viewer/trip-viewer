@@ -2,8 +2,6 @@ name: "Code scanning - action"
 
 on:
   push:
-    paths:
-    - '.github/workflows/poi-deploy.yml'
 
 jobs:
   CodeQL-Build:
