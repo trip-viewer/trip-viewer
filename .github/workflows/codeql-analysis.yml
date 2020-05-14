@@ -36,10 +36,16 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-        
+
     - name: Build with Maven
       working-directory: apis/user-java/
       run: mvn clean test --file pom.xml
+
+    - name: Install dependencies
+      run: dotnet restore apis/poi/poi.sln
+    
+    - name: Build
+      run: dotnet build apis/poi/poi.sln --no-restore
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
