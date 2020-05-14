@@ -1,0 +1,30 @@
+on:
+  issue_comment:
+    types: [created]
+    
+name: Deploy POI to Production
+
+jobs:
+  react-on-issue-comment-not-approved:
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.issue.title, 'Approve POI Deploy to Production') && startsWith(github.event.comment.body, '/approve')
+    steps:
+    - name: Azure Login
+      uses: Azure/login@v1.1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - name: Azure CLI Action
+      uses: Azure/cli@v1.0.0
+      with:
+        # Specify the script here
+        inlineScript: az webapp deployment slot swap -g openhackf1c9cxe9rg -n openhackf1c9cxe9poi --slot staging --target-slot production
+    - name: Comment on Issue
+      uses: actions/github-script@0.9.0
+      with:
+        script: |
+          github.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: 'Please verify deployment was successful before closing. In case of issues type `/approve` again to swap things back.'
+          })
