@@ -20,6 +20,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+
+    - name: Create Issue
+    uses: actions/github-script@0.9.0
+    with:
+      script: |
+        github.issues.create({
+          owner: context.repo.owner,
+          repo: context.repo.repo,
+          title: 'Approve POI Deploy to Production'
+          })  
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     - name: Docker Login
@@ -47,16 +57,5 @@ jobs:
         app-name: openhackf1c9cxe9poi
         slot-name: staging
         images: openhackf1c9cxe9acr.azurecr.io/devopsoh/api-poi:${{ github.run_number }}
-    - name: Create Issue
-      uses: actions/github-script@0.9.0
-      with:
-        script: |
-          github.issues.create({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            title: 'Approve POI Deploy to Production ${{ github.run_number }}',
-            body: 'Please perform the following:<br><br>* navigate to [the API's swagger endpoint](https://openhackf1c9cxe9poi.azurewebsites.net/api/docs/poi/index.html)<br>* if everything looks good, comment `/deploy` to deploy to production',
-            assignees: ["@trip-viewer/poi-api-owners"],
-            })
     - name: Azure Logout
       run: az logout
