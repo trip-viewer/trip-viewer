@@ -47,5 +47,15 @@ jobs:
         app-name: openhackf1c9cxe9poi
         slot-name: staging
         images: openhackf1c9cxe9acr.azurecr.io/devopsoh/api-poi:${{ github.run_number }}
+    - name: Create Issue
+      uses: actions/github-script@0.9.0
+      with:
+        script: |
+          github.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: 'Approve POI Deploy to Production ${{ github.run_number }}',
+            body: 'Please perform the following:<br><br>* navigate to [the API's swagger endpoint](https://openhackf1c9cxe9poi.azurewebsites.net/api/docs/poi/index.html)<br>* if everything looks good, comment `/deploy` to deploy to production'
+            })
     - name: Azure Logout
       run: az logout
