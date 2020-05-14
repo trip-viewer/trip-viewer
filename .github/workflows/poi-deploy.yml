@@ -22,14 +22,14 @@ jobs:
     steps:
 
     - name: Create Issue
-    uses: actions/github-script@0.9.0
-    with:
-      script: |
-        github.issues.create({
-          owner: context.repo.owner,
-          repo: context.repo.repo,
-          title: 'Approve POI Deploy to Production'
-          })  
+      uses: actions/github-script@0.9.0
+      with:
+        script: |
+          github.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: 'Approve POI Deploy to Production'
+            })  
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     - name: Docker Login
