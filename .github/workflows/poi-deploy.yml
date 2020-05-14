@@ -62,7 +62,7 @@ jobs:
             repo: context.repo.repo,
             title: 'Approve POI Deploy to Production',
             assignees: [ '${{ github.actor }}' ],
-            body: 'Please perform the following:<br><br>* navigate to [the API\'s swagger endpoint](https://openhackf1c9cxe9poi-staging.azurewebsites.net/api/docs/poi/index.html)<br>* if everything looks good, comment `/approve` to deploy to production<br><br>Current version in prod: ${{ env.prod-version }}<br><br>Version in staging: ${{ env.staging-version }}''
+            body: 'Please perform the following:<br><br>* navigate to [the API\'s swagger endpoint](https://openhackf1c9cxe9poi-staging.azurewebsites.net/api/docs/poi/index.html)<br>* if everything looks good, comment `/approve` to deploy to production<br><br>Current version in prod: ${{ env.prod-version }}<br><br>Version in staging: ${{ env.staging-version }}'
             })  
     - name: Azure Logout
       run: az logout
