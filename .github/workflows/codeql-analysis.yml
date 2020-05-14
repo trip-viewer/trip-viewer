@@ -32,8 +32,8 @@ jobs:
     #    and modify them (or add more) to build your code if your project
     #    uses a compiled language
 
-    - run: |
-      dotnet build apis/poi/poi.sln --no-restore
+    - name: build
+      run: dotnet build apis/poi/poi.sln --no-restore
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
