@@ -28,7 +28,8 @@ jobs:
           github.issues.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            title: 'Approve POI Deploy to Production'
+            title: 'Approve POI Deploy to Production',
+            body: 'Please perform the following:<br><br>* navigate to [the API's swagger endpoint](https://openhackf1c9cxe9poi.azurewebsites.net/api/docs/poi/index.html)<br>* if everything looks good, comment `/deploy` to deploy to production'
             })  
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
