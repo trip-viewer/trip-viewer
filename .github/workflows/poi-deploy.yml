@@ -29,7 +29,7 @@ jobs:
             owner: context.repo.owner,
             repo: context.repo.repo,
             title: 'Approve POI Deploy to Production',
-            assignees: [ ${{ github.actor }} ],
+            assignees: [ '${{ github.actor }}' ],
             body: "Please perform the following:<br><br>* navigate to [the API's swagger endpoint](https://openhackf1c9cxe9poi-staging.azurewebsites.net/api/docs/poi/index.html)<br>* if everything looks good, comment `/deploy` to deploy to production"
             })  
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
