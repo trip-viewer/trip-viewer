@@ -1,5 +1,5 @@
 
-# POI Service - Comment for deployss
+# POI Service - Comment for deployments
 
 ## Overview
 
