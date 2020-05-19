@@ -8,7 +8,7 @@ queries:
   #- name: Run JavaScript queries
   #  uses: /github/codeql/javascript/config/suites/lgtm/javascript-lgtm@master
   - name: Run Csharp queries
-    uses: /github/codeql/csharp/config/suites/lgtm/csharp-lgtm@master
+    uses: /github/codeql/csharp/ql/src/codeql-suites/csharp-lgtm-full.qls@master
 
 paths:
   - apis/userprofile
