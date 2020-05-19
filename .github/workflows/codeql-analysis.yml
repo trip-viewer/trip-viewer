@@ -19,9 +19,9 @@ jobs:
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
-      # Override language selection by uncommenting this and choosing your languages
-      # with:
-      #   languages: go, javascript, csharp, python, cpp, java
+      with:
+        config-file: ./.github/codeql/codeql-config.yml
+        languages: go, javascript, csharp, java
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
@@ -37,14 +37,14 @@ jobs:
       with:
         java-version: 1.8
 
-    - name: Build with Maven
+    - name: Build Java with Maven
       working-directory: apis/user-java/
       run: mvn clean test --file pom.xml
 
-    - name: Install DotNet dependencies
+    - name: Install dotnet dependencies
       run: dotnet restore apis/poi/poi.sln
     
-    - name: Build
+    - name: Build dotnet
       run: dotnet build apis/poi/poi.sln --no-restore
 
     - name: Perform CodeQL Analysis
