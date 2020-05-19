@@ -12,7 +12,7 @@ queries:
   - name: Run Go queries
 
 paths:
-  - src/util.ts
+  - apis/userprofile
 
 paths-ignore:
   - src
