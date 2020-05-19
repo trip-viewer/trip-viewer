@@ -13,6 +13,7 @@ queries:
 
 paths:
   - apis/userprofile
+  - src/util.ts
 
 paths-ignore:
   - src
