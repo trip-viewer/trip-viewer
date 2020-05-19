@@ -46,6 +46,13 @@ jobs:
     
     - name: Build dotnet
       run: dotnet build apis/poi/poi.sln --no-restore
+      
+    - name: Set up NodeJS
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - run: npm --prefix apis/userprofile install apis/userprofile 
+    - run: npm --prefix apis/userprofile run test apis/userprofile 
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
