@@ -41,7 +41,7 @@ jobs:
       working-directory: apis/user-java/
       run: mvn clean test --file pom.xml
 
-    - name: Install dependencies
+    - name: Install DotNet dependencies
       run: dotnet restore apis/poi/poi.sln
     
     - name: Build
