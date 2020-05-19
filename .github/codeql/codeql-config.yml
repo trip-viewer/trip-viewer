@@ -1,0 +1,19 @@
+name: "trip-viewer CodeQL Config"
+
+disable-default-queries: false
+
+queries:
+  - name: Run Java queries
+    uses: /github/codeql/java/ql/src/codeql-suites/java-lgtm.qls@master
+  - name: Run JavaScript queries
+    uses: /github/codeql/javascript/ql/src/codeql-suites/javascript-lgtm.qls@master
+  - name: Run Csharp queries
+    uses: /github/codeql/csharp/ql/src/codeql-suites/csharp-lgtm.qls@master
+  - name: Run Go queries
+
+paths:
+  - src/util.ts
+
+paths-ignore:
+  - src
+  - lib
