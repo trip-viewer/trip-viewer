@@ -3,7 +3,8 @@ name: "trip-viewer CodeQL Config"
 disable-default-queries: false
 
 queries:
-  #- name: Run Java queries
+  - name: Run Java queries
+    uses: ./java-lgtm.qls
   #  uses: /github/codeql/java/config/suites/lgtm/java-lgtm@master
   #- name: Run JavaScript queries
   #  uses: /github/codeql/javascript/config/suites/lgtm/javascript-lgtm@master
