@@ -3,16 +3,16 @@ name: "trip-viewer CodeQL Config"
 disable-default-queries: false
 
 queries:
-  - name: Security and quality checks
-    uses: security-and-quality
-  #- name: Run Java queries
-  #  uses: ./java-lgtm.qls
-  #- name: Run JavaScript queries
-  #  uses: ./javascript-lgtm.qls
-  #- name: Run Csharp queries
-  #  uses: ./csharp-lgtm.qls
-  #- name: Run Go queries
-  #  uses: ./go-lgtm.qls
+  #- name: Security and quality checks
+  #  uses: security-and-quality
+  - name: Run Java queries
+    uses: ./java-lgtm.qls
+  - name: Run JavaScript queries
+    uses: ./javascript-lgtm.qls
+  - name: Run Csharp queries
+    uses: ./csharp-lgtm.qls
+  - name: Run Go queries
+    uses: ./go-lgtm.qls
 
 paths:
   - apis/userprofile
